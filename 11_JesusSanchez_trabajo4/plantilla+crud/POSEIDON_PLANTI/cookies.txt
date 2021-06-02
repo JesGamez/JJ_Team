@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+www.primefaces.org	TRUE	/poseidon	FALSE	1999999999	JSESSIONID	node01m2zevqt1qflfu4yhsdcf78b21042203.node0
+primefaces.org	TRUE	/	FALSE	1999999999	primeaffiliateid	deleted
+

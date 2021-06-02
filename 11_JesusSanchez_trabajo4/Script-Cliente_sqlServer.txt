@@ -1,0 +1,20 @@
+
+-- Table: CLIENTE
+CREATE TABLE CLIENTE (
+    IDCLI integer NOT NULL IDENTITY(1,1) PRIMARY KEY,
+    NOMAPECLI varchar(150) NULL ,
+    DIRCLI varchar(50) NULL ,
+    TELCLI char(9) NULL ,
+    SEXCLI char(1) NOT NULL ,
+    EDACLI varchar(3) NOT NULL ,
+	ESTCLI char(1) NOT NULL
+);
+
+insert into cliente
+values 
+('Percy Sanchez','San Jose','435956723','M','34','A'),
+('Ronald Sanchez','San Jose','678098123','M','32','A'),
+('Christian Sanchez','San Jose','789123432','M','30','A'),
+('Cynthia Sanchez','San Jose','123098678','F','28','A'),
+('Rosa Sanchez','San Jose','123456789','F','24','A'),
+('Jesus Sanchez','San Jose','925082554','M','20','A');

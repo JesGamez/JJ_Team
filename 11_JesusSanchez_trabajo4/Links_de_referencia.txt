@@ -1,0 +1,10 @@
+Links de referencia
+
+- Doc donde se ven los pasos que se usó para el ejemplo
+https://docs.google.com/document/d/1gWk1cq1gwLuQwKX8mIK316lRSkG3_XqboRV2iJP_AdA/edit?usp=sharing
+
+- Link del repositorio :
+https://github.com/JesGamez/JJ_Team/tree/JAVA/Educaci%C3%B3n/Demo_primefaces/Plantilla
+
+- Link del video de referencia :
+https://www.youtube.com/watch?v=MrrIwFc36r4

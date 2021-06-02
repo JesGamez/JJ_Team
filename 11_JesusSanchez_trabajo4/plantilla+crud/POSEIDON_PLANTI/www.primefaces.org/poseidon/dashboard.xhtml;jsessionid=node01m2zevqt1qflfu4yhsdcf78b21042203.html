@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Mirrored from www.primefaces.org/poseidon/dashboard.xhtml;jsessionid=node01m2zevqt1qflfu4yhsdcf78b21042203.node0 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 May 2021 05:50:59 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head id="j_idt2">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/theme.cssb235.css?ln=primefaces-poseidon-denim-light&amp;v=10.0.0" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/primeicons/primeicons.cssced1.css?ln=primefaces&amp;v=10.0.0" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/fa/font-awesome.cssced1.css?ln=primefaces&amp;v=10.0.0" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/components.cssced1.css?ln=primefaces&amp;v=10.0.0" /><script type="text/javascript" src="javax.faces.resource/jquery/jquery.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><script type="text/javascript" src="javax.faces.resource/core.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><script type="text/javascript" src="javax.faces.resource/components.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><script type="text/javascript" src="javax.faces.resource/jquery/jquery-plugins.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><link type="text/css" rel="stylesheet" href="javax.faces.resource/inputswitch/inputswitch.cssced1.css?ln=primefaces&amp;v=10.0.0" /><script type="text/javascript" src="javax.faces.resource/inputswitch/inputswitch.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><script type="text/javascript" src="javax.faces.resource/touch/touchswipe.jsced1.xhtml?ln=primefaces&amp;v=10.0.0"></script><link type="text/css" rel="stylesheet" href="javax.faces.resource/css/primeflex.min.css9faa.css?ln=poseidon-layout" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/css/primeicons.css9faa.css?ln=poseidon-layout" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/css/demo-light.css9b08.css?ln=demo" /><link type="text/css" rel="stylesheet" href="javax.faces.resource/css/layout-light.css9faa.css?ln=poseidon-layout" /><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='en_US';PrimeFaces.settings.viewId='/dashboard.xhtml';PrimeFaces.settings.contextPath='/poseidon';PrimeFaces.settings.cookiesSecure=false;}</script>
+        <title>Dashboard</title><script type="text/javascript" src="javax.faces.resource/js/layout.js9faa.xhtml?ln=poseidon-layout"></script><script type="text/javascript" src="javax.faces.resource/js/prism.js9faa.xhtml?ln=poseidon-layout"></script><script type="text/javascript" src="javax.faces.resource/js/chart.js9b08.xhtml?ln=demo"></script>
+           <script type="text/javascript">
+               //<![CDATA[
+               $(function() {
+                var dataSet = [
+                    [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                    [40, 29, 7, 73, 81, 69, 46, 21, 96],
+                ];
+                var dataSet2 = [
+                    [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                    [74, 67, 11, 36, 100, 49, 34, 56, 45],
+                ];
+
+                $('#order-tabs-container > .order-tab').on('click', function() {
+                    var el = $(this);
+                    el.addClass('order-tab-active').siblings('.order-tab-active').removeClass('order-tab-active');
+                    ordersChart.data.datasets[0].data = dataSet[parseInt(el.data('index'))];
+                    ordersChart.data.datasets[1].data = dataSet2[parseInt(el.data('index'))];
+                    ordersChart.data.datasets[0].label = el.data('label');
+                    ordersChart.data.datasets[0].borderColor = el.data('stroke');
+                    ordersChart.update();
+                });
+
+                var ordersChart = new Chart(document.getElementById("order-chart").getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September"],
+                        datasets: [{
+                            label: 'Revenue',
+                            data:     [31, 83, 69, 29, 62, 25, 59, 26, 46],
+                            borderColor: [
+                                '#00acac',
+                            ],
+                            borderWidth: 2,
+                            fill: false,
+                            borderDash:[3,6],
+                        }, {
+                            label: 'Cost',
+                            data:     [67, 98, 27, 88, 38, 3, 22, 60, 56],
+                            borderColor: [
+                                '#f1b263',
+                            ],
+                            backgroundColor: [
+                                'rgba(241, 178, 99, .07)',
+                            ],
+                            borderWidth: 2,
+                            fill: true,
+                            pointRadius: 3,
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                fontColor: '#A0A7B5'
+                            }
+                        },
+                        responsive: true,
+                        hover: {
+                            mode: 'index'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: '#A0A7B5'
+                                },
+                                gridLines: {
+                                    color:  'rgba(160, 167, 181, .3)',
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: '#A0A7B5'
+                                },
+                                gridLines: {
+                                    color:  'rgba(160, 167, 181, .3)',
+                                }
+                            }],
+                        }
+                    }
+                });
+
+                var traffidDataSet = [
+                    [48,52],
+                    [26,74],
+                    [12,88],
+                ];
+
+                var trafficChart = null;
+
+                $('#traffic-tabs-container > .traffic-tab').on('click', function() {
+                    var el = $(this);
+                    el.addClass('traffic-tab-active').siblings('.traffic-tab-active').removeClass('traffic-tab-active');
+
+                    if (trafficChart) {
+                        trafficChart.data.datasets[0].data = traffidDataSet[parseInt(el.data('index'))];
+                        trafficChart.update();
+                    }
+                });
+
+                window.redrawDoughnut = function() {
+                    var style = getComputedStyle(document.body);
+                    var primCol = style.getPropertyValue('--primary-color') || '#2c84d8';
+                    var contentAlt = style.getPropertyValue('--content-alt-bg-color') || '#B1B9C9';
+
+                    if (trafficChart) {
+                        trafficChart.destroy();
+                    }
+
+                    trafficChart = new Chart(document.getElementById("traffic-chart").getContext('2d'), {
+                        type: 'doughnut',
+                        data: {
+                            labels: [
+                                    'Add View',
+                                    'Total View',
+                            ],
+                            datasets: [{
+                                data:  [48,52],
+                                backgroundColor: [
+                                    primCol,
+                                    contentAlt,
+                                ],
+                                borderWidth: 0,
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false,
+                            },
+                            responsive: true,
+                            cutoutPercentage: 70
+                        }
+                    });
+                }
+
+                window.redrawDoughnut();
+
+                var goalChart = new Chart(document.getElementById("goal-chart").getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: [
+                                'Complete',
+                                'Not Complete',
+                                'Extra Tasks',
+                        ],
+                        datasets: [{
+                            data:  [183,62,10],
+                            backgroundColor: [
+                                '#ffffff',
+                                'rgba(255,255,255,.2)',
+                                'rgba(255,255,255,.5)',
+                            ],
+                            borderWidth: 0,
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false,
+                        },
+                        responsive: true,
+                    }
+                });
+
+                
+            });
+               //]]>  
+           </script>
+           <style type="text/css">
+               .main-content {
+                   padding: 0;
+               }
+           </style></head><body class="main-body ">
+        
+        <div class="layout-wrapper layout-topbar-light layout-static-active layout-menu-dim  layout-static layout-static-active ">
+
+    <div class="layout-topbar">
+        <div class="layout-topbar-wrapper">
+            <div class="layout-topbar-left"><a id="logolink" name="logolink" href="dashboard.html" class="layout-topbar-logo"><img id="j_idt14" src="javax.faces.resource/images/logo-poseidon.png9faa.png?ln=poseidon-layout" alt="" /></a>
+            </div>
+            <div class="layout-topbar-right">
+                <a href="#" class="menu-button">
+                    <i class="pi pi-bars"></i>
+                </a>
+                <ul class="layout-topbar-actions">
+                    <li class="search-item topbar-item">
+                        <a href="#">
+                            <span class="topbar-icon">
+                                <i class="pi pi-search"></i>
+                            </span>
+                        </a>
+<form id="j_idt16" name="j_idt16" method="post" action="https://www.primefaces.org/poseidon/dashboard.xhtml" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
+<input type="hidden" name="j_idt16" value="j_idt16" />
+<span class="md-inputfield search-input-wrapper"><input id="j_idt16:j_idt18" name="j_idt16:j_idt18" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " placeholder="Search..." /><script id="j_idt16:j_idt18_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_j_idt16_j_idt18",{id:"j_idt16:j_idt18"});});</script>
+                                <i class="fa fa-search"></i></span><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="7131647112466630304:6547136858480247038" autocomplete="off" />
+</form>
+                        <ul>
+<form id="j_idt21" name="j_idt21" method="post" action="https://www.primefaces.org/poseidon/dashboard.xhtml" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
+<input type="hidden" name="j_idt21" value="j_idt21" />
+<span class="md-inputfield search-input-wrapper"><input id="j_idt21:j_idt23" name="j_idt21:j_idt23" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all " placeholder="Search..." /><script id="j_idt21:j_idt23_s" type="text/javascript">$(function(){PrimeFaces.cw("InputText","widget_j_idt21_j_idt23",{id:"j_idt21:j_idt23"});});</script>
+                                    <i class="fa fa-search"></i></span><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:1" value="7131647112466630304:6547136858480247038" autocomplete="off" />
+</form>
+                        </ul>
+                    </li>
+                    <li class="topbar-item notifications">
+                        <a href="#">
+                            <span class="ui-overlay-badge topbar-icon">
+                                <i class="pi pi-bell"></i>
+                                <span class="ui-badge">2</span>
+                            </span>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Notifications</h6>
+                                <span class="ui-badge">3</span>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-shopping-cart"></i>
+                                    <div class="notifications-item">
+                                        <h6>Order <span>#2254</span> is placed</h6>
+                                        <span>Total Amount of <span>$34.50</span></span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-clock"></i>
+                                    <div class="notifications-item">
+                                        <h6>Meeting with <span>AF04</span> Team</h6>
+                                        <span>Google Meets</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-th-large"></i>
+                                    <div class="notifications-item">
+                                        <h6>Task <span>#41</span> is complete</h6>
+                                        <span>9 Remaining Tasks</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-shopping-cart"></i>
+                                    <div class="notifications-item">
+                                        <h6>Order <span>#2255</span> is placed</h6>
+                                        <span>Total Amount of <span>$40.45</span></span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item messages">
+                        <a href="#">
+                            <span class="ui-overlay-badge topbar-icon">
+                                <i class="pi pi-comments"></i>
+                                <span class="ui-badge">6</span>
+                            </span>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Messages</h6>
+                                <span class="ui-badge">5</span>
+                            </li>
+                            <li>
+                                <a tabindex="0"><img id="j_idt26" src="javax.faces.resource/images/dashboard/leader-1.png9b08.png?ln=demo" alt="" />
+                                    <div class="messages-item">
+                                        <h6>Hey! I sent the sales report</h6>
+                                        <span>Dusana Semenov</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0"><img id="j_idt28" src="javax.faces.resource/images/dashboard/leader-2.png9b08.png?ln=demo" alt="" />
+                                    <div class="messages-item">
+                                        <h6>OK. Let’s meet at 15 pm...</h6>
+                                        <span>Edward Lindgren</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0"><img id="j_idt30" src="javax.faces.resource/images/dashboard/leader-3.png9b08.png?ln=demo" alt="" />
+                                    <div class="messages-item">
+                                        <h6>Presentation is ready</h6>
+                                        <span>Noell Blue</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0"><img id="j_idt32" src="javax.faces.resource/images/dashboard/leader-4.png9b08.png?ln=demo" alt="" />
+                                    <div class="messages-item">
+                                        <h6>Faulty delivery on #959</h6>
+                                        <span>Gvozden Boskovsky</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item settings">
+                        <a href="#">
+                            <span class="topbar-icon">
+                                <i class="pi pi-cog"></i>
+                            </span>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header">
+                                <h6 class="header-text">Settings</h6>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-user"></i>
+                                    <div class="settings-item">
+                                        <h6>Account Info</h6>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-users"></i>
+                                    <div class="settings-item">
+                                        <h6>Global Accounts</h6>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-bell"></i>
+                                    <div class="settings-item">
+                                        <h6>Notification Preferences</h6>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a tabindex="0">
+                                    <i class="pi pi-lock"></i>
+                                    <div class="settings-item">
+                                        <h6>Login Settings</h6>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="topbar-item user-profile">
+                        <a href="#"><img id="j_idt34" src="javax.faces.resource/images/avatar-profile.png9faa.png?ln=poseidon-layout" alt="" />
+                            <div class="profile-info">
+                                <h6>Peter Taylor</h6>
+                                <span>Webmaster</span>
+                            </div>
+                        </a>
+                        <ul>
+                            <li class="layout-submenu-header"><img id="j_idt36" src="javax.faces.resource/images/avatar-profile.png9faa.png?ln=poseidon-layout" alt="" />
+                                <div class="profile-info">
+                                    <h6>Peter Taylor</h6>
+                                    <span>Webmaster</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-cog"></i>
+                                    <h6>Setting</h6>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-file-o"></i>
+                                    <h6>Terms of Usage</h6>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-compass"></i>
+                                    <h6>Support</h6>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="pi pi-power-off"></i>
+                                    <h6>Logout</h6>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#" class="layout-rightpanel-button">
+                    <i class="pi pi-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+       
+    </div>
+    
+    <div class="menu-wrapper">
+        <div class="layout-menu-container">
+<form id="menuform" name="menuform" method="post" action="https://www.primefaces.org/poseidon/dashboard.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="menuform" value="menuform" />
+<ul id="menuform:j_idt39" class="layout-menu"><li id="menuform:om_homepage" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Favorites</span></div><a href="#"><i class="pi pi-home layout-menuitem-icon"></i><span class="layout-menuitem-text">Favorites</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Favorites</div></div><ul role="menu"><li id="menuform:om_dashboard" role="menuitem"><a href="dashboard.html"><i class="pi pi-home layout-menuitem-icon"></i><span class="layout-menuitem-text">Dashboard</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Dashboard</div></div></li></ul></li><li id="menuform:om_components" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">UI Kit</span></div><a href="#"><i class="pi pi-star layout-menuitem-icon"></i><span class="layout-menuitem-text">UI Kit</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">UI Kit</div></div><ul role="menu"><li id="menuform:om_formlayout" role="menuitem"><a href="formlayout.html"><i class="pi pi-id-card layout-menuitem-icon"></i><span class="layout-menuitem-text">Form Layout</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Form Layout</div></div></li><li id="menuform:om_input" role="menuitem"><a href="input.html"><i class="pi pi-check-square layout-menuitem-icon"></i><span class="layout-menuitem-text">Input</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Input</div></div></li><li id="menuform:om_floatlabel" role="menuitem"><a href="floatlabel.html"><i class="pi pi-bookmark layout-menuitem-icon"></i><span class="layout-menuitem-text">Float Label</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Float Label</div></div></li><li id="menuform:om_invalidstate" role="menuitem"><a href="invalidstate.html"><i class="pi pi-exclamation-circle layout-menuitem-icon"></i><span class="layout-menuitem-text">Invalid State</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Invalid State</div></div></li><li id="menuform:om_button" role="menuitem"><a class="rotated-icon" href="button.html"><i class="pi pi-mobile layout-menuitem-icon"></i><span class="layout-menuitem-text">Button</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Button</div></div></li><li id="menuform:om_table" role="menuitem"><a href="table.html"><i class="pi pi-table layout-menuitem-icon"></i><span class="layout-menuitem-text">Table</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Table</div></div></li><li id="menuform:om_list" role="menuitem"><a href="list.html"><i class="pi pi-list layout-menuitem-icon"></i><span class="layout-menuitem-text">List</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">List</div></div></li><li id="menuform:om_tree" role="menuitem"><a href="tree.html"><i class="pi pi-share-alt layout-menuitem-icon"></i><span class="layout-menuitem-text">Tree</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Tree</div></div></li><li id="menuform:om_panel" role="menuitem"><a href="panel.html"><i class="pi pi-tablet layout-menuitem-icon"></i><span class="layout-menuitem-text">Panel</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Panel</div></div></li><li id="menuform:om_overlay" role="menuitem"><a href="overlay.html"><i class="pi pi-clone layout-menuitem-icon"></i><span class="layout-menuitem-text">Overlay</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Overlay</div></div></li><li id="menuform:om_menu" role="menuitem"><a href="menu.html"><i class="pi pi-bars layout-menuitem-icon"></i><span class="layout-menuitem-text">Menu</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Menu</div></div></li><li id="menuform:om_message" role="menuitem"><a href="messages.html"><i class="pi pi-comment layout-menuitem-icon"></i><span class="layout-menuitem-text">Message</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Message</div></div></li><li id="menuform:om_file" role="menuitem"><a href="file.html"><i class="pi pi-file layout-menuitem-icon"></i><span class="layout-menuitem-text">File</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">File</div></div></li><li id="menuform:om_chart" role="menuitem"><a href="charts.html"><i class="pi pi-chart-bar layout-menuitem-icon"></i><span class="layout-menuitem-text">Chart</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Chart</div></div></li><li id="menuform:om_misc" role="menuitem"><a href="misc.html"><i class="pi pi-circle-off layout-menuitem-icon"></i><span class="layout-menuitem-text">Misc</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Misc</div></div></li></ul></li><li class="Separator"></li><li id="menuform:om_utils" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Utilities</span></div><a href="#"><i class="pi pi-compass layout-menuitem-icon"></i><span class="layout-menuitem-text">Utilities</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Utilities</div></div><ul role="menu"><li id="menuform:om_display" role="menuitem"><a href="display.html"><i class="pi pi-desktop layout-menuitem-icon"></i><span class="layout-menuitem-text">Display</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Display</div></div></li><li id="menuform:om_elevation" role="menuitem"><a href="elevation.html"><i class="pi pi-external-link layout-menuitem-icon"></i><span class="layout-menuitem-text">Elevation</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Elevation</div></div></li><li id="menuform:om_flexbox" role="menuitem"><a href="flexbox.html"><i class="pi pi-directions layout-menuitem-icon"></i><span class="layout-menuitem-text">FlexBox</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">FlexBox</div></div></li><li id="menuform:om_icons" role="menuitem"><a href="icons.html"><i class="pi pi-search layout-menuitem-icon"></i><span class="layout-menuitem-text">Icons</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Icons</div></div></li><li id="menuform:om_text" role="menuitem"><a href="text.html"><i class="pi pi-pencil layout-menuitem-icon"></i><span class="layout-menuitem-text">Text</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Text</div></div></li><li id="menuform:om_widgets" role="menuitem"><a href="widgets.html"><i class="pi pi-star-o layout-menuitem-icon"></i><span class="layout-menuitem-text">Widgets</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Widgets</div></div></li><li id="menuform:om_grid" role="menuitem"><a href="grid.html"><i class="pi pi-th-large layout-menuitem-icon"></i><span class="layout-menuitem-text">Grid System</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Grid System</div></div></li><li id="menuform:om_spacing" role="menuitem"><a href="spacing.html"><i class="pi pi-arrow-right layout-menuitem-icon"></i><span class="layout-menuitem-text">Spacing</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Spacing</div></div></li><li id="menuform:om_typography" role="menuitem"><a href="typography.html"><i class="pi pi-align-center layout-menuitem-icon"></i><span class="layout-menuitem-text">Typography</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Typography</div></div></li></ul></li><li class="Separator"></li><li id="menuform:om_default" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Pages</span></div><a href="#"><i class="pi pi-briefcase layout-menuitem-icon"></i><span class="layout-menuitem-text">Pages</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Pages</div></div><ul role="menu"><li id="menuform:om_crud" role="menuitem"><a href="crud.html"><i class="pi pi-pencil layout-menuitem-icon"></i><span class="layout-menuitem-text">Crud</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Crud</div></div></li><li id="menuform:om_calendar" role="menuitem"><a href="calendar.html"><i class="pi pi-calendar-plus layout-menuitem-icon"></i><span class="layout-menuitem-text">Calendar</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Calendar</div></div></li><li id="menuform:om_chronoline" role="menuitem"><a href="chronoline.html"><i class="pi pi-calendar layout-menuitem-icon"></i><span class="layout-menuitem-text">Chronoline</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Chronoline</div></div></li><li id="menuform:om_landing" role="menuitem"><a href="landing.html"><i class="pi pi-user-plus layout-menuitem-icon"></i><span class="layout-menuitem-text">Landing</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Landing</div></div></li><li id="menuform:om_login" role="menuitem"><a href="login.html"><i class="pi pi-sign-in layout-menuitem-icon"></i><span class="layout-menuitem-text">Login</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Login</div></div></li><li id="menuform:om_invoice" role="menuitem"><a href="invoice.html"><i class="pi pi-dollar layout-menuitem-icon"></i><span class="layout-menuitem-text">Invoice</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Invoice</div></div></li><li id="menuform:om_help" role="menuitem"><a href="help.html"><i class="pi pi-question-circle layout-menuitem-icon"></i><span class="layout-menuitem-text">Help</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Help</div></div></li><li id="menuform:om_error" role="menuitem"><a href="error.html"><i class="pi pi-times-circle layout-menuitem-icon"></i><span class="layout-menuitem-text">Error</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Error</div></div></li><li id="menuform:om_notfound" role="menuitem"><a href="notfound.html"><i class="pi pi-exclamation-circle layout-menuitem-icon"></i><span class="layout-menuitem-text">Not Found</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Not Found</div></div></li><li id="menuform:om_access" role="menuitem"><a href="access.html"><i class="pi pi-lock layout-menuitem-icon"></i><span class="layout-menuitem-text">Access Denied</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Access Denied</div></div></li><li id="menuform:om_empty" role="menuitem"><a href="empty.html"><i class="pi pi-circle-off layout-menuitem-icon"></i><span class="layout-menuitem-text">Empty</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Empty</div></div></li></ul></li><li class="Separator"></li><li id="menuform:om_hierarchy" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Hierarchy</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Hierarchy</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Hierarchy</div></div><ul role="menu"><li id="menuform:om_sm1" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 1</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 1</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 1</div></div><ul role="menu"><li id="menuform:om_sm11" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 1.1</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 1.1</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 1.1</div></div><ul role="menu"><li id="menuform:om_lnk111" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 1.1.1</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 1.1.1</div></div></li><li id="menuform:om_lnk112" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 1.1.2</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 1.1.2</div></div></li><li id="menuform:om_lnk113" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 1.1.3</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 1.1.3</div></div></li></ul></li><li id="menuform:om_sm12" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 1.2</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 1.2</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 1.2</div></div><ul role="menu"><li id="menuform:om_lnk121" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 1.2.1</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 1.2.1</div></div></li></ul></li></ul></li><li id="menuform:om_sm2" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 2</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 2</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 2</div></div><ul role="menu"><li id="menuform:om_sm21" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 2.1</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 2.1</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 2.1</div></div><ul role="menu"><li id="menuform:om_lnk211" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 2.1.1</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 2.1.1</div></div></li><li id="menuform:om_lnk212" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 2.1.2</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 2.1.2</div></div></li></ul></li><li id="menuform:om_sm22" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Submenu 2.2</span></div><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Submenu 2.2</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Submenu 2.2</div></div><ul role="menu"><li id="menuform:om_lnk221" role="menuitem"><a href="#"><i class="pi pi-align-left layout-menuitem-icon"></i><span class="layout-menuitem-text">Link 2.2.1</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Link 2.2.1</div></div></li></ul></li></ul></li></ul></li><li class="Separator"></li><li id="menuform:om_getstarted" role="menuitem" class="layout-root-menuitem"><div><span class="layout-menuitem-text">Start</span></div><a href="#"><i class="pi pi-download layout-menuitem-icon"></i><span class="layout-menuitem-text">Start</span><i class="fa fa-fw layout-submenu-toggler fa-angle-down"></i></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Start</div></div><ul role="menu"><li id="menuform:om_buy" role="menuitem"><a href="https://www.primefaces.org/store"><i class="pi pi-shopping-cart layout-menuitem-icon"></i><span class="layout-menuitem-text">Buy Now</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Buy Now</div></div></li><li id="menuform:om_doc" role="menuitem"><a href="documentation.html"><i class="pi pi-info-circle layout-menuitem-icon"></i><span class="layout-menuitem-text">Documentation</span></a><div class="layout-menu-tooltip"><div class="layout-menu-tooltip-arrow"></div><div class="layout-menu-tooltip-text">Documentation</div></div></li></ul></li></ul><script id="menuform:j_idt39_s" type="text/javascript">PrimeFaces.cw("Poseidon","PoseidonMenuWidget",{id:"menuform:j_idt39",pathname:"/poseidon/dashboard.xhtml"});</script><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:2" value="7131647112466630304:6547136858480247038" autocomplete="off" />
+</form>
+        </div> 
+    </div>
+    
+    <div class="layout-rightpanel">
+        <div class="rightpanel-wrapper">
+            <div class="section-tasks today">
+                <h5>Your Tasks Today</h5>
+                <ul>
+                    <li><div id="j_idt46" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt46_input" name="j_idt46_input" type="checkbox" autocomplete="off" checked="checked" aria-checked="true" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span></div></div><script id="j_idt46_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt46",{id:"j_idt46"});});</script>
+                        <div class="task done">
+                            <h6>Sales reports</h6>
+                            <span>Today</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt48" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt48_input" name="j_idt48_input" type="checkbox" autocomplete="off" checked="checked" aria-checked="true" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-chkbox-icon ui-icon ui-icon-check ui-c"></span></div></div><script id="j_idt48_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt48",{id:"j_idt48"});});</script>
+                        <div class="task done">
+                            <h6>Pay invoices</h6>
+                            <span>Today</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt50" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt50_input" name="j_idt50_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt50_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt50",{id:"j_idt50"});});</script>
+                        <div class="task">
+                            <h6>Dinner with Tony</h6>
+                            <span>Today, 22:36</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt52" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt52_input" name="j_idt52_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt52_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt52",{id:"j_idt52"});});</script>
+                        <div class="task">
+                            <h6>Client meeting</h6>
+                            <span>Today</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <hr />
+
+            <div class="section-tasks upcoming">
+                <h5>Upcoming</h5>
+
+                <ul>
+                    <li><div id="j_idt54" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt54_input" name="j_idt54_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt54_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt54",{id:"j_idt54"});});</script>
+                        <div class="task">
+                            <h6>New representative meeting</h6>
+                            <span>27 May</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt56" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt56_input" name="j_idt56_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt56_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt56",{id:"j_idt56"});});</script>
+                        <div class="task">
+                            <h6>Flight tickets</h6>
+                            <span>28 May</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt58" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt58_input" name="j_idt58_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt58_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt58",{id:"j_idt58"});});</script>
+                        <div class="task">
+                            <h6>Generate charts</h6>
+                            <span>29 May</span>
+                        </div>
+                    </li>
+                    <li><div id="j_idt60" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt60_input" name="j_idt60_input" type="checkbox" autocomplete="off" aria-checked="false" onchange="onTaskCheckboxChange(this)" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt60_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt60",{id:"j_idt60"});});</script>
+                        <div class="task">
+                            <h6>Delete old files</h6>
+                            <span>30 May</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function onTaskCheckboxChange(input) {
+            if (input) {
+                var inputEl = $(input);
+                var taskEl = inputEl.closest('.ui-selectbooleancheckbox').next();
+
+                if (inputEl.is(':checked'))
+                    taskEl.addClass('done');
+                else
+                    taskEl.removeClass('done');
+            }
+        }
+    </script>
+
+    <div id="layout-config" class="layout-config">
+        <div class="layout-config-content">
+            <a href="#" id="layout-config-button" class="layout-config-button">
+                <i class="pi pi-cog"></i>
+            </a>
+<form id="config-form" name="config-form" method="post" action="https://www.primefaces.org/poseidon/dashboard.xhtml" class="layout-config-form" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="config-form" value="config-form" />
+
+                <div class="layout-config-header">
+                    <h5>Theme Customization</h5>
+                    <span>Poseidon offers different themes for layout, topbar, menu etc.</span>
+                </div><div id="config-form:lightdark-panel" class="ui-outputpanel ui-widget layout-config-section options">
+                    <span class="section-name">Layout Mode</span>
+                    <div class="p-grid layout-config-options"><div id="config-form:j_idt65" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt65:0" name="config-form:j_idt65" type="radio" value="light" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeLayout('denim', event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt65&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt65&quot;,u:&quot;config-form logolink footerlogolink&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();}});}])" checked="checked" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-radiobutton-icon ui-icon ui-icon-bullet ui-c"></span></div></div><label for="config-form:j_idt65:0">Light</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt65:1" name="config-form:j_idt65" type="radio" value="dark" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeLayout('denim', event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt65&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt65&quot;,u:&quot;config-form logolink footerlogolink&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();}});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt65:1">Dark</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt65:2" name="config-form:j_idt65" type="radio" value="dim" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeLayout('denim', event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt65&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt65&quot;,u:&quot;config-form logolink footerlogolink&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();}});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt65:2">Dim</label></div></div></div><script id="config-form:j_idt65_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneRadio","widget_config_form_j_idt65",{id:"config-form:j_idt65",unselectable:false});});</script>
+                    </div></div><div id="config-form:menumodes-panel" class="ui-outputpanel ui-widget layout-config-section options">
+                    <span class="section-name">Menu Mode</span>
+                    <div class="p-grid layout-config-options"><div id="config-form:j_idt71" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt71:0" name="config-form:j_idt71" type="radio" value="layout-static layout-static-active" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeMenuMode(event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt71&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt71&quot;,u:&quot;config-form:menumodes-panel&quot;});}])" checked="checked" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-radiobutton-icon ui-icon ui-icon-bullet ui-c"></span></div></div><label for="config-form:j_idt71:0">Static</label></div><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt71:1" name="config-form:j_idt71" type="radio" value="layout-overlay" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeMenuMode(event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt71&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt71&quot;,u:&quot;config-form:menumodes-panel&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt71:1">Overlay</label></div></div><div class="ui-g"><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt71:2" name="config-form:j_idt71" type="radio" value="layout-horizontal" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeMenuMode(event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt71&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt71&quot;,u:&quot;config-form:menumodes-panel&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt71:2">Horizontal</label></div></div></div><script id="config-form:j_idt71_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneRadio","widget_config_form_j_idt71",{id:"config-form:j_idt71",unselectable:false});});</script>
+                    </div></div><div id="config-form:menuthemes-panel" class="ui-outputpanel ui-widget layout-config-section options">
+                    <span class="section-name">Menu Theme</span>
+                    <div class="p-grid layout-config-options"><div id="config-form:j_idt77" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt77:0" name="config-form:j_idt77" type="radio" value="light" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-menu')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt77&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt77&quot;,u:&quot;logolink config-form:menuthemes-panel&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt77:0">Light</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt77:1" name="config-form:j_idt77" type="radio" value="dark" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-menu')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt77&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt77&quot;,u:&quot;logolink config-form:menuthemes-panel&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt77:1">Dark</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt77:2" name="config-form:j_idt77" type="radio" value="dim" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-menu')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt77&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt77&quot;,u:&quot;logolink config-form:menuthemes-panel&quot;});}])" checked="checked" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-radiobutton-icon ui-icon ui-icon-bullet ui-c"></span></div></div><label for="config-form:j_idt77:2">Dim</label></div></div></div><script id="config-form:j_idt77_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneRadio","widget_config_form_j_idt77",{id:"config-form:j_idt77",unselectable:false});});</script>
+                    </div></div><div id="config-form:topbarthemes-panel" class="ui-outputpanel ui-widget layout-config-section options">
+                    <span class="section-name">Topbar Mode</span>
+                    <div class="p-grid layout-config-options"><div id="config-form:j_idt83" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt83:0" name="config-form:j_idt83" type="radio" value="light" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-topbar')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt83&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt83&quot;,u:&quot;logolink config-form&quot;});}])" checked="checked" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-radiobutton-icon ui-icon ui-icon-bullet ui-c"></span></div></div><label for="config-form:j_idt83:0">Light</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt83:1" name="config-form:j_idt83" type="radio" value="dark" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-topbar')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt83&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt83&quot;,u:&quot;logolink config-form&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt83:1">Dark</label></div><div class="ui-g-12 ui-md-4"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt83:2" name="config-form:j_idt83" type="radio" value="dim" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeSectionTheme(event.target.value , 'layout-topbar')},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt83&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt83&quot;,u:&quot;logolink config-form&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt83:2">Dim</label></div></div></div><script id="config-form:j_idt83_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneRadio","widget_config_form_j_idt83",{id:"config-form:j_idt83",unselectable:false});});</script>
+                    </div></div><div id="config-form:outlined-panel" class="ui-outputpanel ui-widget layout-config-section options">
+                    <span class="section-name">Form Type</span>
+                    <div class="p-grid layout-config-options"><div id="config-form:j_idt89" class="ui-selectoneradio ui-widget ui-grid ui-grid-responsive"><div class="ui-g"><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt89:0" name="config-form:j_idt89" type="radio" value="outlined" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.updateInputStyle(event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt89&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt89&quot;});}])" checked="checked" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default ui-state-active"><span class="ui-radiobutton-icon ui-icon ui-icon-bullet ui-c"></span></div></div><label for="config-form:j_idt89:0">Outlined</label></div><div class="ui-g-12 ui-md-6"><div class="ui-radiobutton ui-widget"><div class="ui-helper-hidden-accessible"><input id="config-form:j_idt89:1" name="config-form:j_idt89" type="radio" value="filled" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.updateInputStyle(event.target.value)},function(event){PrimeFaces.ab({s:&quot;config-form:j_idt89&quot;,e:&quot;valueChange&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt89&quot;});}])" /></div><div class="ui-radiobutton-box ui-widget ui-corner-all ui-state-default"><span class="ui-radiobutton-icon ui-icon ui-icon-blank ui-c"></span></div></div><label for="config-form:j_idt89:1">Filled</label></div></div></div><script id="config-form:j_idt89_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneRadio","widget_config_form_j_idt89",{id:"config-form:j_idt89",unselectable:false});});</script>
+                    </div></div><div id="config-form:orientation-panel" class="ui-outputpanel ui-widget layout-config-section dark">
+                    <span class="section-name">RTL Mode</span><div id="config-form:layout-switch-2" class="ui-inputswitch ui-widget ui-widget-content ui-corner-all"><div class="ui-inputswitch-off"><span>off</span></div><div class="ui-inputswitch-on ui-state-active"><span>on</span></div><div class="ui-inputswitch-handle ui-state-default "></div><div class="ui-helper-hidden-accessible"><input id="config-form:layout-switch-2_input" name="config-form:layout-switch-2_input" type="checkbox" onchange="PrimeFaces.bcn(this,event,[function(event){PrimeFaces.PoseidonConfigurator.changeMenuToRTL()},function(event){PrimeFaces.ab({s:&quot;config-form:layout-switch-2&quot;,e:&quot;change&quot;,f:&quot;config-form&quot;,p:&quot;config-form:layout-switch-2&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();}});}]);" /></div></div><script id="config-form:layout-switch-2_s" type="text/javascript">$(function(){PrimeFaces.cw("InputSwitch","widget_config_form_layout_switch_2",{id:"config-form:layout-switch-2"});});</script></div><div id="config-form:componentthemes-panel" class="ui-outputpanel ui-widget layout-config-section colors">
+                    <span class="section-name">Component Colors</span>
+                    <div class="p-grid layout-config-colors">
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:0:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:0:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:0:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('denim', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #2f8ee5;" title="Denim"></span>
+                                        <span class="layout-config-option-check-mask">
+                                            <i class="pi pi-check"></i>
+                                        </span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:1:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:1:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:1:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('sea-green', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #30A059;" title="Sea Green"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:2:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:2:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:2:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('amethyst', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #834CA8;" title="Amethyst"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:3:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:3:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:3:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('wedgewood', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #557DAA;" title="Wedgewood"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:4:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:4:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:4:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('tapestry', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #A74896;" title="Tapestry"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:5:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:5:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:5:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('cape-palliser', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #A46B3E;" title="Cape Palliser"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:6:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:6:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:6:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('apple', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #52A235;" title="Apple"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:7:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:7:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:7:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('gigas', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #5751A9;" title="Gigas"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:8:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:8:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:8:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('jungle-green', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #2B9F9C;" title="Jungle Green"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:9:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:9:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:9:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('camelot', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #A54357;" title="Camelot"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:10:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:10:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:10:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('amber', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #D49341;" title="Amber"></span></a>
+                            </div>
+                            <div class="p-col p-col-fixed"><a id="config-form:j_idt95:11:j_idt97" href="#" class="ui-commandlink ui-widget layout-config-option" onclick="PrimeFaces.ab({s:&quot;config-form:j_idt95:11:j_idt97&quot;,f:&quot;config-form&quot;,p:&quot;config-form:j_idt95:11:j_idt97&quot;,u:&quot;config-form&quot;,onst:function(cfg){PrimeFaces.PoseidonConfigurator.beforeResourceChange();},onco:function(xhr,status,args,data){PrimeFaces.PoseidonConfigurator.changeComponentsTheme('cyan', 'light');}});return false;">
+                                    <span class="layout-config-option-color" style="background-color: #399DB2;" title="Cyan"></span></a>
+                            </div>
+                    </div></div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:3" value="7131647112466630304:6547136858480247038" autocomplete="off" />
+</form>
+        </div>
+    </div>
+            
+            <div class="layout-main">
+
+    <div class="layout-breadcrumb">
+        <div class="breadcrumb">
+            <div class="route-bar-breadcrumb">
+        <li>FAVORITES</li>
+        <li><i class="pi pi-angle-right"></i></li>
+        <li><a href="calendar.html" class="ui-link ui-widget">DASHBOARD</a>
+        </li>
+            </div>
+        </div>
+    </div> 
+                <div class="layout-content">
+<form id="j_idt112" name="j_idt112" method="post" action="https://www.primefaces.org/poseidon/dashboard.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt112" value="j_idt112" />
+
+            <div class="layout-dashboard">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-12 p-xl-9">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-12 p-xl-4">
+                                <div class="card overview-box-1 blue">
+                                    <div class="card-header">
+                                        <h6>Revenue Status</h6>
+                                        <div class="header-buttons">
+                                            <a href="#"><i class="pi pi-arrow-up"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overview-content">
+                                        <h3>87363</h3>
+                                        <div class="overview-graph">
+                                            <span style="height: 12px;"><span class="graph-tooltip">12</span></span>
+                                            <span style="height: 40px;"><span class="graph-tooltip">40</span></span>
+                                            <span style="height: 26px;"><span class="graph-tooltip">26</span></span>
+                                            <span style="height: 17px;"><span class="graph-tooltip">17</span></span>
+                                            <span style="height: 36px;"><span class="graph-tooltip">36</span></span>
+                                            <span style="height: 51px;"><span class="graph-tooltip">51</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-footer">
+                                        <span><i class="pi pi-arrow-up"></i> <span>55%</span> increase in today sales</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-12 p-xl-4">
+                                <div class="card overview-box-1 teal">
+                                    <div class="card-header">
+                                        <h6>Page View</h6>
+                                        <div class="header-buttons">
+                                            <a href="#"><i class="pi pi-arrow-up"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overview-content">
+                                        <h3>5592</h3>
+                                        <div class="overview-graph">
+                                            <span style="height: 30px;"><span class="graph-tooltip">30</span></span>
+                                            <span style="height: 43px;"><span class="graph-tooltip">43</span></span>
+                                            <span style="height: 48px;"><span class="graph-tooltip">48</span></span>
+                                            <span style="height: 40px;"><span class="graph-tooltip">40</span></span>
+                                            <span style="height: 352x;"><span class="graph-tooltip">52</span></span>
+                                            <span style="height: 18px;"><span class="graph-tooltip">18</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-footer down">
+                                        <span><i class="pi pi-arrow-down"></i> <span>12%</span> decrease in today sales</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-12 p-xl-4">
+                                <div class="card  overview-box-1 orange">
+                                    <div class="card-header">
+                                        <h6>Bounce Rate</h6>
+                                        <div class="header-buttons">
+                                            <a href="#"><i class="pi pi-arrow-up"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="overview-content">
+                                        <h3>55.95%</h3>
+                                        <div class="overview-graph">
+                                            <span style="height: 20px;"><span class="graph-tooltip">20</span></span>
+                                            <span style="height: 23px;"><span class="graph-tooltip">23</span></span>
+                                            <span style="height: 52px;"><span class="graph-tooltip">52</span></span>
+                                            <span style="height: 18px;"><span class="graph-tooltip">18</span></span>
+                                            <span style="height: 28px;"><span class="graph-tooltip">28</span></span>
+                                            <span style="height: 42px;"><span class="graph-tooltip">42</span></span>
+                                        </div>
+                                    </div>
+                                    <div class="overview-footer">
+                                        <span><i class="pi pi-arrow-up"></i> <span>6%</span> increase in today sales</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="card sale-graph">
+                                    <div class="card-header">
+                                        <h6>Top Products</h6>
+                                    </div>
+                                    <div id="order-tabs-container" class="order-tabs">
+                                        <div class="order-tab order-tab-active" data-label="New Sales" data-index="0" data-stroke="#00acac">
+                                            <h6>Current Week</h6>
+                                            <h3>$455.55</h3>
+                                        </div>
+                                        <div class="order-tab " data-label="Previous Sales" data-index="1" data-stroke="#2f8ee5">
+                                            <h6>Previous Week</h6>
+                                            <h3>$244.40</h3>
+                                        </div>
+                                    </div>
+                                    <div class="overview-chart">
+                                        <canvas id="order-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-12 p-xl-3">
+                        <div class="p-grid">
+                            <div class="p-col-12 p-md-6 p-xl-12">
+                                <div class="card traffic">
+                                    <div class="card-header">
+                                        <h6>Traffic</h6>
+                                    </div>
+                                    <span>26 May - 27 May</span>
+                                    <div class="traffic-chart">
+                                        <canvas id="traffic-chart" width="200px" height="200px"></canvas>
+                                    </div>
+                                    <div id="traffic-tabs-container" class="traffic-tabs">
+                                        <div class="traffic-tab traffic-tab-active" data-label="New Sales" data-index="0">
+                                            <h6>48%</h6>
+                                            <i class="pi pi-facebook"></i>
+                                            <span>Facebook</span>
+                                        </div>
+                                        <div class="traffic-tab " data-label="Previous Sales" data-index="1">
+                                            <h6>26%</h6>
+                                            <i class="pi pi-twitter"></i>
+                                            <span>Twitter</span>
+                                        </div>
+                                        <div class="traffic-tab " data-label="Previous Sales" data-index="2">
+                                            <h6>17%</h6>
+                                            <i class="pi pi-github"></i>
+                                            <span>Github</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12 p-md-6 p-xl-12">
+                                <div class="card goals">
+                                    <div class="card-header">
+                                        <h6>Today's Goal</h6>
+                                        <span><span>183</span> / 255</span>
+                                    </div>
+                                    <span>22 June, 2020</span>
+                                    <div class="goal-graph">
+                                        <canvas id="goal-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-xl-4">
+                        <div class="card leaderboard">
+                            <div class="card-header">
+                                <h6>Leaderboard</h6>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt114" src="javax.faces.resource/images/dashboard/leader-1.png9b08.png?ln=demo" alt="" />
+                                        <p>Peter Taylor</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$224.44</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt116" src="javax.faces.resource/images/dashboard/leader-2.png9b08.png?ln=demo" alt="" />
+                                        <p>Nicolina Lindholm</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$86.05</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt118" src="javax.faces.resource/images/dashboard/leader-3.png9b08.png?ln=demo" alt="" />
+                                        <p>Su Hua</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$59.44</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt120" src="javax.faces.resource/images/dashboard/leader-4.png9b08.png?ln=demo" alt="" />
+                                        <p>Maria Illescas</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$12.32</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt122" src="javax.faces.resource/images/dashboard/avatar-dengra.png9b08.png?ln=demo" alt="" />
+                                        <p>Ezequiel Dengra</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$12.32</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt124" src="javax.faces.resource/images/dashboard/avatar-conan.png9b08.png?ln=demo" alt="" />
+                                        <p>Conan Matusov</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$12.32</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="person"><img id="j_idt112:j_idt126" src="javax.faces.resource/images/dashboard/seller-1.png9b08.png?ln=demo" alt="" />
+                                        <p>Hector Mariano</p>
+                                    </div>
+                                    <div class="person-numbers">
+                                        <h6>$12.32</h6>
+                                        <i class="pi pi-arrow-up"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-xl-4">
+                        <div class="card product-list">
+                            <div class="card-header">
+                                <h6>Product List</h6>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="product"><img id="j_idt112:j_idt128" src="javax.faces.resource/images/dashboard/image-product-1.png9b08.png?ln=demo" alt="" />
+                                        <div class="product-info">
+                                            <p>Nike Air X12</p>
+                                            <span>Sold <span>250</span> times</span>
+                                        </div>
+    
+                                    </div>
+                                    <i class="pi pi-arrow-up"></i>
+                                </li>
+                                <li>
+                                    <div class="product"><img id="j_idt112:j_idt130" src="javax.faces.resource/images/dashboard/image-product-2.png9b08.png?ln=demo" alt="" />
+                                        <div class="product-info">
+                                            <p>Nike Sports Watch</p>
+                                            <span>Sold <span>189</span> times</span>
+                                        </div>
+    
+                                    </div>
+                                    <i class="pi pi-arrow-up"></i>
+                                </li>
+                                <li>
+                                    <div class="product"><img id="j_idt112:j_idt132" src="javax.faces.resource/images/dashboard/image-product-3.png9b08.png?ln=demo" alt="" />
+                                        <div class="product-info">
+                                            <p>Heinz Yellow Mustard</p>
+                                            <span>Sold <span>24</span> times</span>
+                                        </div>
+    
+                                    </div>
+                                    <i class="pi pi-arrow-up"></i>
+                                </li>
+                                <li>
+                                    <div class="product"><img id="j_idt112:j_idt134" src="javax.faces.resource/images/dashboard/image-product-4.png9b08.png?ln=demo" alt="" />
+                                        <div class="product-info">
+                                            <p>Beats Headphone</p>
+                                            <span>Sold <span>24</span> times</span>
+                                        </div>
+    
+                                    </div>
+                                    <i class="pi pi-arrow-down down"></i>
+                                </li>
+                                <li>
+                                    <div class="product"><img id="j_idt112:j_idt136" src="javax.faces.resource/images/dashboard/image-product-5.png9b08.png?ln=demo" alt="" />
+                                        <div class="product-info">
+                                            <p>Black Racing Bike</p>
+                                            <span>Sold <span>24</span> times</span>
+                                        </div>
+    
+                                    </div>
+                                    <i class="pi pi-arrow-up"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-xl-4">
+                        <div class="card sellers">
+                            <div class="card-header">
+                                <h6>Seller List</h6>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt138" src="javax.faces.resource/images/dashboard/seller-1.png9b08.png?ln=demo" alt="" />
+                                        <p>Hector Mariano</p>
+                                    </div>
+                                    <span>Tier 1</span><div id="j_idt112:j_idt140" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt140_input" name="j_idt112:j_idt140_input" autocomplete="off" value="2" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt140_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt140",{id:"j_idt112:j_idt140",readonly:true});});</script><span id="j_idt112:j_idt141" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt141_button" name="j_idt112:j_idt141_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt141_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt142&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt143&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt144&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt141_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt141",{id:"j_idt112:j_idt141",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt146" src="javax.faces.resource/images/dashboard/seller-2.png9b08.png?ln=demo" alt="" />
+                                        <p>Maria Illescas</p>
+                                    </div>
+                                    <span>Tier 2</span><div id="j_idt112:j_idt148" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt148_input" name="j_idt112:j_idt148_input" autocomplete="off" value="2" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt148_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt148",{id:"j_idt112:j_idt148",readonly:true});});</script><span id="j_idt112:j_idt149" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt149_button" name="j_idt112:j_idt149_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt149_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt150&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt151&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt152&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt149_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt149",{id:"j_idt112:j_idt149",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt154" src="javax.faces.resource/images/dashboard/seller-3.png9b08.png?ln=demo" alt="" />
+                                        <p>Ngô Hải Giang</p>
+                                    </div>
+                                    <span>Tier 3</span><div id="j_idt112:j_idt156" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt156_input" name="j_idt112:j_idt156_input" autocomplete="off" value="1" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt156_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt156",{id:"j_idt112:j_idt156",readonly:true});});</script><span id="j_idt112:j_idt157" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt157_button" name="j_idt112:j_idt157_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt157_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt158&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt159&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt160&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt157_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt157",{id:"j_idt112:j_idt157",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt162" src="javax.faces.resource/images/dashboard/seller-4.png9b08.png?ln=demo" alt="" />
+                                        <p>Tamas Bunce</p>
+                                    </div>
+                                    <span>Tier 4</span><div id="j_idt112:j_idt164" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt164_input" name="j_idt112:j_idt164_input" autocomplete="off" value="1" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt164_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt164",{id:"j_idt112:j_idt164",readonly:true});});</script><span id="j_idt112:j_idt165" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt165_button" name="j_idt112:j_idt165_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt165_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt166&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt167&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt168&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt165_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt165",{id:"j_idt112:j_idt165",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt170" src="javax.faces.resource/images/dashboard/avatar-conan.png9b08.png?ln=demo" alt="" />
+                                        <p>Conan Matusov</p>
+                                    </div>
+                                    <span>Tier 4</span><div id="j_idt112:j_idt172" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt172_input" name="j_idt112:j_idt172_input" autocomplete="off" value="1" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt172_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt172",{id:"j_idt112:j_idt172",readonly:true});});</script><span id="j_idt112:j_idt173" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt173_button" name="j_idt112:j_idt173_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt173_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt174&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt175&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt176&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt173_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt173",{id:"j_idt112:j_idt173",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt178" src="javax.faces.resource/images/dashboard/leader-4.png9b08.png?ln=demo" alt="" />
+                                        <p>Maria Illescas</p>
+                                    </div>
+                                    <span>Tier 4</span><div id="j_idt112:j_idt180" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt180_input" name="j_idt112:j_idt180_input" autocomplete="off" value="1" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt180_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt180",{id:"j_idt112:j_idt180",readonly:true});});</script><span id="j_idt112:j_idt181" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt181_button" name="j_idt112:j_idt181_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt181_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt182&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt183&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt184&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt181_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt181",{id:"j_idt112:j_idt181",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                                <li>
+                                    <div class="seller"><img id="j_idt112:j_idt186" src="javax.faces.resource/images/dashboard/leader-3.png9b08.png?ln=demo" alt="" />
+                                        <p>Su Hua</p>
+                                    </div>
+                                    <span>Tier 4</span><div id="j_idt112:j_idt188" class="ui-rating"><div class="ui-rating-star ui-rating-star-on"><a></a></div><div class="ui-rating-star"><a></a></div><div class="ui-rating-star"><a></a></div><input type="hidden" id="j_idt112:j_idt188_input" name="j_idt112:j_idt188_input" autocomplete="off" value="1" readonly="readonly" aria-readonly="true" /></div><script id="j_idt112:j_idt188_s" type="text/javascript">$(function(){PrimeFaces.cw("Rating","widget_j_idt112_j_idt188",{id:"j_idt112:j_idt188",readonly:true});});</script><span id="j_idt112:j_idt189" class="ui-menubutton ui-widget ui-button-secondary outlined-button "><button id="j_idt112:j_idt189_button" name="j_idt112:j_idt189_button" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"><span class="ui-button-icon-left ui-icon ui-c pi pi-ellipsis-v"></span><span class="ui-button-text ui-c">ui-button</span></button><div id="j_idt112:j_idt189_menu" class="ui-menu ui-menu-dynamic ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-shadow" role="menu"><ul class="ui-menu-list ui-helper-reset"><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt190&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-user" aria-hidden="true"></span><span class="ui-menuitem-text">View Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt191&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-refresh" aria-hidden="true"></span><span class="ui-menuitem-text">Update Profile</span></a></li><li class="ui-menuitem ui-widget ui-corner-all" role="none"><a tabindex="-1" role="menuitem" class="ui-menuitem-link ui-corner-all" href="#" onclick="PrimeFaces.ab({s:&quot;j_idt112:j_idt192&quot;,f:&quot;j_idt112&quot;});return false;"><span class="ui-menuitem-icon ui-icon pi pi-trash" aria-hidden="true"></span><span class="ui-menuitem-text">Delete Profile</span></a></li></ul></div></span><script id="j_idt112:j_idt189_s" type="text/javascript">$(function(){PrimeFaces.cw("MenuButton","widget_j_idt112_j_idt189",{id:"j_idt112:j_idt189",appendTo:"@(body)",collision:"flip",autoDisplay:true,delay:0});});</script>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-xl-4">
+                        <div class="card tasks">
+                            <div class="card-header">
+                                <h6>Tasks</h6>
+                            </div>
+                            <div>
+                                <div class="task task-1">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>12</span> Orders to fulfill</div>
+                                        <i class="pi pi-tag"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-2">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>40+</span> Payments to withdraw</div>
+                                        <i class="pi pi-money-bill"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-3">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>4</span> Reports to revise</div>
+                                        <i class="pi pi-file"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-4">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>6</span> Questions to respond</div>
+                                        <i class="pi pi-comment"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-5">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>2</span> Chargebacks to review</div>
+                                        <i class="pi pi-check-square"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-1">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>12</span> Orders to fulfill</div>
+                                        <i class="pi pi-tag"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                                <div class="task task-2">
+                                    <div class="task-info">
+                                        <div class="task-name"><span>40+</span> Payments to withdraw</div>
+                                        <i class="pi pi-money-bill"></i>
+                                    </div>
+                                    <div class="task-progress">
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-xl-8">
+                        <div class="card sales">
+                            <div class="card-header">
+                                <h6>Recent Sales</h6><div id="j_idt112:j_idt194" class="ui-selectonemenu ui-widget ui-state-default ui-corner-all dashbard-demo-dropdown" aria-owns="j_idt112:j_idt194_panel" style="min-width: 8rem" role="combobox" aria-haspopup="listbox" aria-expanded="false"><div class="ui-helper-hidden-accessible"><input id="j_idt112:j_idt194_focus" name="j_idt112:j_idt194_focus" type="text" autocomplete="off" /></div><div class="ui-helper-hidden-accessible"><select id="j_idt112:j_idt194_input" name="j_idt112:j_idt194_input" tabindex="-1" autocomplete="off" aria-hidden="true" onchange="PrimeFaces.ab({s:&quot;j_idt112:j_idt194&quot;,e:&quot;valueChange&quot;,f:&quot;j_idt112&quot;,p:&quot;j_idt112:j_idt194&quot;,u:&quot;j_idt112:productsTable&quot;});"><option value="0" selected="selected" data-escape="true">This Week</option><option value="1" data-escape="true">Last Week</option></select></div><label id="j_idt112:j_idt194_label" class="ui-selectonemenu-label ui-inputfield ui-corner-all">&nbsp;</label><div class="ui-selectonemenu-trigger ui-state-default ui-corner-right"><span class="ui-icon ui-icon-triangle-1-s ui-c"></span></div><div id="j_idt112:j_idt194_panel" class="ui-selectonemenu-panel ui-widget ui-widget-content ui-corner-all ui-helper-hidden ui-shadow ui-input-overlay"><div class="ui-selectonemenu-items-wrapper" style="max-height:200px"></div></div></div><script id="j_idt112:j_idt194_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneMenu","widget_j_idt112_j_idt194",{id:"j_idt112:j_idt194",appendTo:"@(body)",renderPanelContentOnClient:true,behaviors:{valueChange:function(ext,event) {PrimeFaces.ab({s:"j_idt112:j_idt194",e:"valueChange",f:"j_idt112",p:"j_idt112:j_idt194",u:"j_idt112:productsTable"},ext);}}});});</script>
+                            </div>
+                            <p>Your sales activity over time.</p><div id="j_idt112:productsTable" class="ui-datatable ui-widget ui-datatable-reflow" style="null;visibility:hidden;"><label id="j_idt112:productsTable_reflowDD_label" for="j_idt112:productsTable_reflowDD" class="ui-reflow-label">Sort</label><select id="j_idt112:productsTable_reflowDD" name="j_idt112:productsTable_reflowDD" class="ui-reflow-dropdown ui-state-default" autocomplete="off"><option value="0_0">Category Ascending</option><option value="0_1">Category Descending</option><option value="1_0">Id Ascending</option><option value="1_1">Id Descending</option><option value="2_0">Status Ascending</option><option value="2_1">Status Descending</option><option value="3_0">Price Ascending</option><option value="3_1">Price Descending</option></select><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="j_idt112:productsTable_head"><tr role="row"><th id="j_idt112:productsTable:j_idt198" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Id" scope="col"><span class="ui-column-title">Id</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><span class="ui-sortable-column-badge ui-helper-hidden"></span></th><th id="j_idt112:productsTable:j_idt200" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Category" scope="col"><span class="ui-column-title">Category</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><span class="ui-sortable-column-badge ui-helper-hidden"></span></th><th id="j_idt112:productsTable:j_idt202" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Price" scope="col"><span class="ui-column-title">Price</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><span class="ui-sortable-column-badge ui-helper-hidden"></span></th><th id="j_idt112:productsTable:j_idt204" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Status" scope="col"><span class="ui-column-title">Status</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span><span class="ui-sortable-column-badge ui-helper-hidden"></span></th><th id="j_idt112:productsTable:j_idt206" class="ui-state-default" role="columnheader" scope="col" style="width: 3.5rem"><span class="ui-column-title"></span></th></tr></thead><tbody id="j_idt112:productsTable_data" class="ui-datatable-data ui-widget-content"><tr data-ri="0" class="ui-widget-content ui-datatable-even" role="row"><td role="gridcell" class="">1000</td><td role="gridcell" class="">Accessories</td><td role="gridcell" class="">$65.00</td><td role="gridcell" class="">
+                                    <span class="product-badge status-instock">INSTOCK</span></td><td role="gridcell" style="width: 3.5rem" class=""><button id="j_idt112:productsTable:0:j_idt207" name="j_idt112:productsTable:0:j_idt207" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" onclick="PrimeFaces.ab({s:&quot;j_idt112:productsTable:0:j_idt207&quot;,f:&quot;j_idt112&quot;});return false;" type="submit"><span class="ui-button-icon-left ui-icon ui-c pi pi-search"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt112:productsTable:0:j_idt207_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_j_idt112_productsTable_0_j_idt207",{id:"j_idt112:productsTable:0:j_idt207"});});</script></td></tr><tr data-ri="1" class="ui-widget-content ui-datatable-odd" role="row"><td role="gridcell" class="">1001</td><td role="gridcell" class="">Accessories</td><td role="gridcell" class="">$72.00</td><td role="gridcell" class="">
+                                    <span class="product-badge status-outofstock">OUTOFSTOCK</span></td><td role="gridcell" style="width: 3.5rem" class=""><button id="j_idt112:productsTable:1:j_idt207" name="j_idt112:productsTable:1:j_idt207" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" onclick="PrimeFaces.ab({s:&quot;j_idt112:productsTable:1:j_idt207&quot;,f:&quot;j_idt112&quot;});return false;" type="submit"><span class="ui-button-icon-left ui-icon ui-c pi pi-search"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt112:productsTable:1:j_idt207_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_j_idt112_productsTable_1_j_idt207",{id:"j_idt112:productsTable:1:j_idt207"});});</script></td></tr><tr data-ri="2" class="ui-widget-content ui-datatable-even" role="row"><td role="gridcell" class="">1002</td><td role="gridcell" class="">Fitness</td><td role="gridcell" class="">$79.00</td><td role="gridcell" class="">
+                                    <span class="product-badge status-lowstock">LOWSTOCK</span></td><td role="gridcell" style="width: 3.5rem" class=""><button id="j_idt112:productsTable:2:j_idt207" name="j_idt112:productsTable:2:j_idt207" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" onclick="PrimeFaces.ab({s:&quot;j_idt112:productsTable:2:j_idt207&quot;,f:&quot;j_idt112&quot;});return false;" type="submit"><span class="ui-button-icon-left ui-icon ui-c pi pi-search"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt112:productsTable:2:j_idt207_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_j_idt112_productsTable_2_j_idt207",{id:"j_idt112:productsTable:2:j_idt207"});});</script></td></tr><tr data-ri="3" class="ui-widget-content ui-datatable-odd" role="row"><td role="gridcell" class="">1003</td><td role="gridcell" class="">Clothing</td><td role="gridcell" class="">$29.00</td><td role="gridcell" class="">
+                                    <span class="product-badge status-instock">INSTOCK</span></td><td role="gridcell" style="width: 3.5rem" class=""><button id="j_idt112:productsTable:3:j_idt207" name="j_idt112:productsTable:3:j_idt207" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" onclick="PrimeFaces.ab({s:&quot;j_idt112:productsTable:3:j_idt207&quot;,f:&quot;j_idt112&quot;});return false;" type="submit"><span class="ui-button-icon-left ui-icon ui-c pi pi-search"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt112:productsTable:3:j_idt207_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_j_idt112_productsTable_3_j_idt207",{id:"j_idt112:productsTable:3:j_idt207"});});</script></td></tr><tr data-ri="4" class="ui-widget-content ui-datatable-even" role="row"><td role="gridcell" class="">1004</td><td role="gridcell" class="">Accessories</td><td role="gridcell" class="">$15.00</td><td role="gridcell" class="">
+                                    <span class="product-badge status-instock">INSTOCK</span></td><td role="gridcell" style="width: 3.5rem" class=""><button id="j_idt112:productsTable:4:j_idt207" name="j_idt112:productsTable:4:j_idt207" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" onclick="PrimeFaces.ab({s:&quot;j_idt112:productsTable:4:j_idt207&quot;,f:&quot;j_idt112&quot;});return false;" type="submit"><span class="ui-button-icon-left ui-icon ui-c pi pi-search"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt112:productsTable:4:j_idt207_s" type="text/javascript">$(function(){PrimeFaces.cw("CommandButton","widget_j_idt112_productsTable_4_j_idt207",{id:"j_idt112:productsTable:4:j_idt207"});});</script></td></tr></tbody></table></div><div id="j_idt112:productsTable_paginator_bottom" class="ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom" role="navigation" aria-label="Pagination"><a href="#" class="ui-paginator-first ui-state-default ui-corner-all ui-state-disabled" aria-label="First Page" tabindex="-1"><span class="ui-icon ui-icon-seek-first">F</span></a><a href="#" class="ui-paginator-prev ui-state-default ui-corner-all ui-state-disabled" aria-label="Previous Page" tabindex="-1"><span class="ui-icon ui-icon-seek-prev">P</span></a><span class="ui-paginator-pages"><a class="ui-paginator-page ui-state-default ui-state-active ui-corner-all" tabindex="0" href="#">1</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">2</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">3</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">4</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">5</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">6</a></span><a href="#" class="ui-paginator-next ui-state-default ui-corner-all" aria-label="Next Page" tabindex="0"><span class="ui-icon ui-icon-seek-next">N</span></a><a href="#" class="ui-paginator-last ui-state-default ui-corner-all" aria-label="Last Page" tabindex="0"><span class="ui-icon ui-icon-seek-end">E</span></a></div></div><script id="j_idt112:productsTable_s" type="text/javascript">$(function(){PrimeFaces.cw("DataTable","widget_j_idt112_productsTable",{id:"j_idt112:productsTable",paginator:{id:['j_idt112:productsTable_paginator_bottom'],rows:5,rowCount:30,page:0,currentPageTemplate:'({currentPage} of {totalPages})'},sorting:true,multiSort:true,sortMetaOrder:[''],reflow:true,groupColumnIndexes:[],disableContextMenuIfEmpty:false});});</script>
+                        </div>
+                    </div>
+                </div>
+            </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:4" value="7131647112466630304:6547136858480247038" autocomplete="off" />
+</form>
+                </div>
+    
+    <div class="layout-footer"><a id="footerlogolink" name="footerlogolink" href="dashboard.html"><img id="j_idt211" src="javax.faces.resource/images/logo-poseidon.png9faa.png?ln=poseidon-layout" alt="" /></a>
+        <div class="social-icons">
+            <a><i class="pi pi-github"></i></a>
+            <a><i class="pi pi-facebook"></i></a>
+            <a><i class="pi pi-twitter"></i></a>
+        </div>
+    </div>
+            </div>
+            <div class="layout-mask modal-in"></div>
+        </div><div id="j_idt214" class="layout-ajax-loader"><div id="j_idt214_start" style="display:none">
+                <i class="pi pi-spin pi-spinner layout-ajax-loader-icon" aria-hidden="true"></i></div><div id="j_idt214_complete" style="display:none"></div></div><script id="j_idt214_s" type="text/javascript">$(function(){PrimeFaces.cw("AjaxStatus","widget_j_idt214",{id:"j_idt214",delay:0});});</script></body>
+
+
+<!-- Mirrored from www.primefaces.org/poseidon/dashboard.xhtml;jsessionid=node01m2zevqt1qflfu4yhsdcf78b21042203.node0 by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 May 2021 05:51:34 GMT -->
+</html>

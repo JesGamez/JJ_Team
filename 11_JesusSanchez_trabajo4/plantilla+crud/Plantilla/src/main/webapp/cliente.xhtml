@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <h:head>
+
+    </h:head>
+    
+    <h:form id="frmCliente">
+        <p:panelGrid columns="2" layout="grid">
+        <p:outputLabel value="ID: "/>
+        <p:inputText value="#{clienteC.cliente.IDCLI}"/>
+        
+         <p:outputLabel value="NOMBRE: "/>
+         <p:inputText value="#{clienteC.cliente.NOMAPECLI}"/>
+        
+         <p:outputLabel value="DIRECCION: "/>
+         <p:inputText value="#{clienteC.cliente.DIRCLI}"/>
+        
+         <p:outputLabel value="TELEFONO: "/>
+         <p:inputText value="#{clienteC.cliente.TELCLI}"/>
+        
+         <p:outputLabel value="SEXO: "/>
+         <p:inputText value="#{clienteC.cliente.SEXCLI}"/>
+        
+         <p:outputLabel value="EDAD: "/>
+         <p:inputText value="#{clienteC.cliente.EDACLI}"/>
+         
+         <p:commandButton value="Agregar" update="frmCliente,:tablaP" actionListener="#{clienteC.registrar()}"/>
+         <p:commandButton value="Modificar" update="frmCliente,:tablaP" actionListener="#{clienteC.modificar()}"/>
+         </p:panelGrid>
+        
+    </h:form>
+    
+    
+    <h:form id="tablaP">
+        <p:dataTable var="Cli" id="dataCliente" value="#{clienteC.lstcliente}"
+                     paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} datos"
+                     rowsPerPageTemplate="5,10,15,20">
+
+
+            <p:column headerText="Nombre"> 
+                <h:outputText value="#{Cli.NOMAPECLI}" /> 
+            </p:column>
+            <p:column headerText="Direccion"> 
+                <h:outputText value="#{Cli.DIRCLI}" /> 
+            </p:column>
+             <p:column headerText="sexo"> 
+                 <h:outputText value="#{Cli.SEXCLI}" /> 
+            </p:column>
+            
+            <p:column headerText="Acciones"> 
+                <p:commandButton  value="eliminar" actionListener="#{clienteC.eliminar(Cli)}" update=":tablaP"/>
+                
+                <p:commandButton  value="obtener" actionListener="#{clienteC.obtenerDatos(Cli)}" update=":frmCliente"/>
+                
+            </p:column>
+
+
+            <f:facet name="footer">
+                EN TOTAL HAY #{fn:length(clienteC.lstcliente)} REGISTROS.
+            </f:facet>
+
+        </p:dataTable>
+    </h:form>
+</html>
