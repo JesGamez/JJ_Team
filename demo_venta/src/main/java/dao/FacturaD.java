@@ -93,7 +93,23 @@ public class FacturaD extends Conexion implements ICRUD<Factura> {
         try {
             System.out.println("haciendo consulta");
 
-            String sql = "SELECT * FROM v_pruebita";
+            String sql = "select \n"
+                    + "factura.IDFACT,\n"
+                    + "factura.FECFAC,\n"
+                    + "factura.IDCLI,\n"
+                    + "factura.IDVEND,\n"
+                    + "\n"
+                    + "vendedor.nomapevend,\n"
+                    + "vendedor.puevend,\n"
+                    + "\n"
+                    + "cliente.nomapecli,\n"
+                    + "cliente.TELCLI\n"
+                    + "\n"
+                    + "from factura\n"
+                    + "inner join cliente\n"
+                    + "on factura.IDCLI = cliente.IDCLI\n"
+                    + "inner join vendedor\n"
+                    + "on vendedor.IDVEND = factura.IDVEND;";
 
             Statement st = this.getCn().createStatement();
             ResultSet rs = st.executeQuery(sql);
