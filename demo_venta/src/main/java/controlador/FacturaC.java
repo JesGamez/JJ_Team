@@ -75,7 +75,7 @@ public class FacturaC implements Serializable {
             dao.modificar(factura);
             limpiar();
         } catch (Exception e) {
-            System.out.println("error ");
+            System.out.println("error en modificar FacturaC " + e.getMessage());
         }
     }
     
@@ -84,6 +84,8 @@ public class FacturaC implements Serializable {
         factura = new Factura();
     }
 
+    
+    
     public FacturaD getDao() {
         return dao;
     }

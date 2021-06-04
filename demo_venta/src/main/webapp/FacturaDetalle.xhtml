@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <h:form id="frmFactura">
+                <p:panelGrid columns="2" >
+
+                    <p:outputLabel value="Factura   :"/>
+
+                    <p:selectOneMenu value="${facturaDetalleC.facturaDetalle.IDFACT}" > 
+                        <f:selectItem itemLabel="Selecione una factura" itemValue=""/>
+
+                        <f:selectItems value="${facturaC.lstFactura}" 
+                                       var="cli" 
+                                       itemLabel="${cli.FECFAC}" itemValue="${cli.IDFACT}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Producto   :"/>
+
+                    <p:selectOneMenu value="${facturaDetalleC.facturaDetalle.IDPROD}" > 
+                        <f:selectItem itemLabel="Selecione una persona" itemValue=""/>
+
+                        <f:selectItems value="${productoC.lstProducto}" 
+                                       var="ven" 
+                                       itemLabel="${ven.NOMPROD}${ven.VALCOMP}${ven.VALVENT}" itemValue="${ven.IDPROD}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Cantidad "/>
+                    <p:inputText value="#{facturaDetalleC.facturaDetalle.CANTFACDET}"/>
+
+                    <p:commandButton value="Agregar" update="frmFactura,:tablaFactura" actionListener="#{facturaDetalleC.registrar()}"/>
+                    <p:commandButton value="Modificar" update="frmFactura,:tablaFactura" actionListener="#{facturaDetalleC.modificar()}"/>
+
+                </p:panelGrid>
+            </h:form>
+
+            <h:form id="tablaFactura">
+                <p:dataTable var="facturaDetalle" id="dataFactura" value="#{facturaDetalleC.lstFacturaDetalle}"
+                             paginator="true" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                             {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} datos"
+                             rowsPerPageTemplate="5,10,15,20">
+
+                    <p:column headerText="Fecha Factura"> 
+                        <h:outputText value="#{facturaDetalle.factura.FECFAC}" /> 
+                    </p:column>
+
+                    <p:column headerText="producto y valores"> 
+                        <h:outputText value="#{facturaDetalle.producto.NOMPROD}#{facturaDetalle.producto.VALCOMP}#{facturaDetalle.producto.VALVENT}" /> 
+                    </p:column>
+
+                    <p:column headerText="Cantidad"> 
+                        <h:outputText value="#{facturaDetalle.CANTFACDET}" /> 
+                    </p:column>
+
+                    <p:column headerText="Acciones"> 
+                        <p:commandButton  value="eliminar" actionListener="#{facturaDetalleC.eliminar(facturaDetalle)}" update=":tablaFactura"/>
+                        <p:commandButton  value="obtener" actionListener="#{facturaDetalleC.obtenerDatos(facturaDetalle)}" update=":frmFactura"/>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        EN TOTAL HAY #{fn:length(facturaDetalleC.lstFacturaDetalle)} REGISTROS.
+                    </f:facet>
+
+                </p:dataTable>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+

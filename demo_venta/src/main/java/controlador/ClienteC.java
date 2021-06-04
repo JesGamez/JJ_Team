@@ -87,6 +87,8 @@ public class ClienteC implements Serializable {
         cliente = new Cliente();
     }
 
+    
+    
     public ClienteD getDao() {
         return dao;
     }

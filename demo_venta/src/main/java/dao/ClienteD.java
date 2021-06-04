@@ -24,7 +24,8 @@ public class ClienteD extends Conexion implements ICRUD<Cliente> {
         this.conectar();
 
         try {
-            String sql = "insert into CLIENTE (NOMAPECLI,DIRCLI,TELCLI,SEXCLI,EDACLI,ESTCLI)\n"
+            String sql = "insert into CLIENTE "
+                    + "(NOMAPECLI,DIRCLI,TELCLI,SEXCLI,EDACLI,ESTCLI)\n"
                     + "VALUES (?,?,?,?,?,?)";
             PreparedStatement ps = this.getCn().prepareStatement(sql);
 
@@ -118,7 +119,5 @@ public class ClienteD extends Conexion implements ICRUD<Cliente> {
         }
         return lista;
     }
-    
-   
 
 }

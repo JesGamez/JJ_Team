@@ -44,12 +44,7 @@
                                  value="#{facturaC.factura.FECFAC}" 
                                  navigator="true" yearRange="c-100:c"  pattern="dd-MM-yyyy" 
                                  required="true"  maxdate="today"  showButtonPanel="true"  />
-                    <p:selectOneRadio style="width: 400px" id="haber" required="true" requiredMessage="Falta tipo haber">
-                            <f:selectItem itemValue="A" itemLabel="Aporte" />
-                            <f:selectItem itemValue="R" itemLabel="Remuneracion"/>
-                            <f:selectItem itemValue="D" itemLabel="Descuento"/>
-                        </p:selectOneRadio>
-
+                    
                     <p:commandButton value="Agregar" update="frmFactura,:tablaFactura" actionListener="#{facturaC.registrar()}"/>
                     <p:commandButton value="Modificar" update="frmFactura,:tablaFactura" actionListener="#{facturaC.modificar()}"/>
 

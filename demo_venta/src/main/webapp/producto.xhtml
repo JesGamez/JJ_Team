@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <h:form id="frmCliente">
+                <p:panelGrid columns="2" >
+                    <p:outputLabel value="NOMBRE: "/>
+                    <p:inputText value="#{productoC.producto.NOMPROD}"/>
+
+                    <p:outputLabel value="compra "/>
+                    <p:inputText value="#{productoC.producto.VALCOMP}"/>
+
+                    <p:outputLabel value="venta "/>
+                    <p:inputText value="#{productoC.producto.VALVENT}"/>
+
+
+                    <p:commandButton value="Agregar" update="frmCliente,:tablaP" actionListener="#{productoC.registrar()}"/>
+                    <p:commandButton value="Modificar" update="frmCliente,:tablaP" actionListener="#{productoC.modificar()}"/>
+
+                </p:panelGrid>
+            </h:form>
+
+
+            <h:form id="tablaP">
+                <p:dataTable var="pro" id="dataCliente" value="#{productoC.lstProducto}"
+                             paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} 
+                             {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} datos"
+                             rowsPerPageTemplate="5,10,15,20">
+
+
+                    <p:column headerText="Nombre"> 
+                        <h:outputText value="#{pro.NOMPROD}" /> 
+                    </p:column>
+                    <p:column headerText="compra"> 
+                        <h:outputText value="#{pro.VALCOMP}" /> 
+                    </p:column>
+                    <p:column headerText="venta"> 
+                        <h:outputText value="#{pro.VALVENT}" /> 
+                    </p:column>
+
+                    <p:column headerText="Acciones"> 
+                        <p:commandButton  value="eliminar" actionListener="#{productoC.eliminar(pro)}" update=":tablaP"/>
+
+                        <p:commandButton  value="obtener" actionListener="#{productoC.obtenerDatos(pro)}" update=":frmCliente"/>
+
+                    </p:column>
+
+
+                    <f:facet name="footer">
+                        EN TOTAL HAY #{fn:length(productoC.lstProducto)} REGISTROS.
+                    </f:facet>
+
+                </p:dataTable>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+
