@@ -21,8 +21,7 @@ import modelo.Producto;
  */
 public class FacturaDetalleD extends Conexion implements ICRUD<FacturaDetalle> {
 
-    @Override
-    public void registrar(FacturaDetalle modelo) throws Exception {
+    public void registrarDetalle(FacturaDetalle modelo,Factura modelo2) throws Exception {
         this.conectar();
         try {
             String sql = "insert into FACTURA_DETALLE (CANTFACDET,IDFACT,IDPROD)\n"
@@ -30,7 +29,7 @@ public class FacturaDetalleD extends Conexion implements ICRUD<FacturaDetalle> {
             PreparedStatement ps = this.getCn().prepareStatement(sql);
 
             ps.setInt(1, modelo.getCANTFACDET());
-            ps.setInt(2, modelo.getIDFACT());
+            ps.setInt(2, modelo2.getIDFACT());
             ps.setInt(3, modelo.getIDPROD());
 
             ps.executeUpdate();
@@ -151,5 +150,10 @@ public class FacturaDetalleD extends Conexion implements ICRUD<FacturaDetalle> {
             this.Cerrar();
         }
         return lista;
+    }
+
+    @Override
+    public void registrar(FacturaDetalle modelo) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -15,7 +15,7 @@
         </h:head>
 
         <h:body>
-         <h:form>
+            <h:form>
                 <p:panelMenu style="width:250px">
                     <p:submenu label="Menu">
                         <p:menuitem value="Factura" icon="icon-users" url="../faces/Factura.xhtml"/>                              
@@ -30,38 +30,58 @@
 
             <h:form id="frmFactura">
                 <p:panelGrid columns="2" >
+                <!--FACTURA-->
+                    <p:outputLabel value="Cliente   :"/>
 
-                    <p:outputLabel value="Factura   :"/>
+                    <p:selectOneMenu value="${pruebaC.factura.IDCLI}" > 
+                        <f:selectItem itemLabel="Selecione una persona" itemValue=""/>
 
-                    <p:selectOneMenu value="${facturaDetalleC.facturaDetalle.IDFACT}" > 
-                        <f:selectItem itemLabel="Selecione una factura" itemValue=""/>
-
-                        <f:selectItems value="${facturaC.lstFactura}" 
+                        <f:selectItems value="${clienteC.lstcliente}" 
                                        var="cli" 
-                                       itemLabel="${cli.FECFAC}" itemValue="${cli.IDFACT}" />
+                                       itemLabel="${cli.NOMAPECLI}" itemValue="${cli.IDCLI}" />
                     </p:selectOneMenu>
 
+                    <p:outputLabel value="Vendedor   :"/>
+
+                    <p:selectOneMenu value="${pruebaC.factura.IDVEND}" > 
+                        <f:selectItem itemLabel="Selecione una persona" itemValue=""/>
+
+                        <f:selectItems value="${vendedorC.lstvendedor}" 
+                                       var="ven" 
+                                       itemLabel="${ven.NOMAPEVEND}" itemValue="${ven.IDVEND}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Fecha de emision:" />
+                    <p:calendar  style="width: 260px" placeholder="dia-mes-año" mask="true" 
+                                 value="#{pruebaC.factura.FECFAC}" 
+                                 navigator="true" yearRange="c-100:c"  pattern="dd-MM-yyyy" 
+                                 required="true"  maxdate="today"  showButtonPanel="true"  />
+
+                    <!--DETALLE-->
+                    
                     <p:outputLabel value="Producto   :"/>
 
-                    <p:selectOneMenu value="${facturaDetalleC.facturaDetalle.IDPROD}" > 
+                    <p:selectOneMenu value="${pruebaC.facturaDetalle.IDPROD}" > 
                         <f:selectItem itemLabel="Selecione una persona" itemValue=""/>
 
                         <f:selectItems value="${productoC.lstProducto}" 
                                        var="ven" 
                                        itemLabel="${ven.NOMPROD}${ven.VALCOMP}${ven.VALVENT}" itemValue="${ven.IDPROD}" />
                     </p:selectOneMenu>
-
+                    
                     <p:outputLabel value="Cantidad "/>
-                    <p:inputText value="#{facturaDetalleC.facturaDetalle.CANTFACDET}"/>
+                    <p:inputText value="#{pruebaC.facturaDetalle.CANTFACDET}"/>
 
-                    <p:commandButton value="Agregar" update="frmFactura,:tablaFactura" actionListener="#{facturaDetalleC.registrar()}"/>
-                    <p:commandButton value="Modificar" update="frmFactura,:tablaFactura" actionListener="#{facturaDetalleC.modificar()}"/>
+                    <p:commandButton value="Agregar" update="frmFactura,:tablaFactura" actionListener="#{pruebaC.registrar()}"/>
+                    <p:commandButton value="Modificar" update="frmFactura,:tablaFactura" actionListener="#{pruebaC.modificar()}"/>
 
                 </p:panelGrid>
+                
             </h:form>
 
+
             <h:form id="tablaFactura">
-                <p:dataTable var="facturaDetalle" id="dataFactura" value="#{facturaDetalleC.lstFacturaDetalle}"
+                <p:dataTable var="factura" id="dataFactura" value="#{pruebaC.lstFactura}"
                              paginator="true" 
                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
                              {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -69,24 +89,24 @@
                              rowsPerPageTemplate="5,10,15,20">
 
                     <p:column headerText="Fecha Factura"> 
-                        <h:outputText value="#{facturaDetalle.factura.FECFAC}" /> 
+                        <h:outputText value="#{factura.FECFAC}" /> 
                     </p:column>
 
-                    <p:column headerText="producto y valores"> 
-                        <h:outputText value="#{facturaDetalle.producto.NOMPROD}#{facturaDetalle.producto.VALCOMP}#{facturaDetalle.producto.VALVENT}" /> 
+                    <p:column headerText="Nombre y telefono cliente"> 
+                        <h:outputText value="#{factura.cliente.NOMAPECLI} #{factura.cliente.TELCLI}" /> 
                     </p:column>
 
-                    <p:column headerText="Cantidad"> 
-                        <h:outputText value="#{facturaDetalle.CANTFACDET}" /> 
+                    <p:column headerText="Vendedor y su puesto"> 
+                        <h:outputText value="#{factura.vendedor.NOMAPEVEND} #{factura.vendedor.PUEVEND}" /> 
                     </p:column>
 
                     <p:column headerText="Acciones"> 
-                        <p:commandButton  value="eliminar" actionListener="#{facturaDetalleC.eliminar(facturaDetalle)}" update=":tablaFactura"/>
-                        <p:commandButton  value="obtener" actionListener="#{facturaDetalleC.obtenerDatos(facturaDetalle)}" update=":frmFactura"/>
+                        <p:commandButton  value="eliminar" actionListener="#{pruebaC.eliminar(factura,factura)}" update=":tablaFactura"/>
+                        <p:commandButton  value="obtener" actionListener="#{pruebaC.obtenerDatos(factura,factura)}" update=""/>
                     </p:column>
 
                     <f:facet name="footer">
-                        EN TOTAL HAY #{fn:length(facturaDetalleC.lstFacturaDetalle)} REGISTROS.
+                        EN TOTAL HAY #{fn:length(pruebaC.lstFactura)} REGISTROS.
                     </f:facet>
 
                 </p:dataTable>

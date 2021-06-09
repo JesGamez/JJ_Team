@@ -15,7 +15,20 @@
         </h:head>
 
         <h:body>
-
+           <h:form>
+                <p:panelMenu style="width:250px">
+                    <p:submenu label="Menu">
+                        <p:menuitem value="Factura" icon="icon-users" url="../faces/Factura.xhtml"/>                              
+                        <p:menuitem value="Factura_Detalle" icon="icon-users"  url="../faces/FacturaDetalle.xhtml"/>
+                        <p:menuitem value="Cliente" icon="icon-users"  url="../faces/cliente.xhtml" />
+                        <p:menuitem value="Producto" icon="icon-users"  url="../faces/producto.xhtml" />
+                        <p:menuitem value="Vendedor" icon="icon-users"  url="../faces/vendedor.xhtml" />
+                        <p:menuitem value="Prueba" icon="icon-users"  url="../faces/pruebaVista.xhtml" />
+                    </p:submenu>
+                </p:panelMenu>	
+            </h:form>
+            
+            
             <h:form id="frmCliente">
                 <p:panelGrid columns="2" >
                     <p:outputLabel value="NOMBRE: "/>
