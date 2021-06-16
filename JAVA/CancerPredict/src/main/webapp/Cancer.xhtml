@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body >
+        <p:growl showDetail="true" id="msg"/>
+        <center>
+            <h1> Detección precoz de cancer de mama </h1>
+            <div style="width: 95%; margin-left: auto; margin-right: auto;" >
+                <h:form id="predicion">
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered">
+                                <p:outputLabel value="¿Cuál es el espesor de la masa (1 - 10)"/>
+                            </p:column>
+                            <!--<p:column rowspan="17" style="font-weight: bold;">  </p:column>-->
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="¿Cuál es la uniformidad del tamaño de la celula? (1 - 10)"/>                
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:spinner id="ct" value="#{cancerC.cancer.ct}" min="1" max="10" />
+                            </p:column>                    
+                            <p:column>
+                                <p:slider for="ct"  step="1" minValue="1" maxValue="10" style="width: 220px"/>
+                            </p:column>
+
+                            <p:column>
+                                <p:spinner id="ucz" value="#{cancerC.cancer.ucz}" min="1" max="10" />
+                            </p:column> 
+                            <p:column>
+                                <p:slider for="ucz" step="1" minValue="1" maxValue="10" style="width: 220px"/>
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="¿Cual es la uniformidad de la forma dela célula? (1-10)"/>                        
+                            </p:column>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="Adhesión marginal ( 1 - 10 )"/>                
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:spinner id="ucs" value="#{cancerC.cancer.ucs}" min="1" max="10" />
+                            </p:column>
+                            <p:column>
+                                <p:slider for="ucs" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>
+                            <p:column>
+                                 <p:spinner id="ma" value="#{cancerC.cancer.ma}" min="1" max="10" />
+                            </p:column>
+                            <p:column>
+                                <p:slider for="ma" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>  
+                        </p:row>                    
+                        <p:row>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="Tamaño individual de la célula ( 1 - 10 )"/>
+                            </p:column>
+
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="¿Núcleo? ( 1 - 10)"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                 <p:spinner id="secs" value="#{cancerC.cancer.secs}" min="1" max="10" />
+                            </p:column>
+                            <p:column>
+                                <p:slider for="secs" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>
+                            <p:column>
+                                 <p:spinner id="bn" value="#{cancerC.cancer.bn}" min="1" max="10" />
+                            </p:column>
+                            <p:column>
+                                <p:slider for="bn" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>
+                        </p:row>                    
+                        <p:row>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="Cromatina Blanda ( 1 - 10)"/>
+                            </p:column>
+                            <p:column  colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="Nucleoli normal ( 1 - 10 )"/>                
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:spinner id="bc" value="#{cancerC.cancer.bc}" size="2" min="1" max="10"/>                    
+                            </p:column>
+                            <p:column>
+                                <p:slider for="bc" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>    
+                            <p:column>
+                                <p:spinner id="nn" value="#{cancerC.cancer.nn}" min="1" max="10"/>                    
+                            </p:column>
+                            <p:column>
+                                <p:slider for="nn" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>  
+                        </p:row> 
+                        <p:row>
+                            <p:column colspan="2" style="font-weight: bold; color: orangered;">
+                                <p:outputLabel value="Mitosis ( 1 - 10)"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:spinner id="mitosis" value="#{cancerC.cancer.mitosis}" size="2" min="1" max="10"/>                    
+                            </p:column>
+                            <p:column>
+                                <p:slider for="mitosis" minValue="1" maxValue="10" step="1" style="width: 220px"/>
+                            </p:column>    
+                        </p:row> 
+                    </p:panelGrid>
+                    <p:commandButton value="Ver Resultados" actionListener="#{cancerC.mostarDatos()}"
+                                     update=":predicion :msg :dialog" oncomplete="PF('predice').show();"/>
+                </h:form>
+
+                <p:dialog widgetVar="predice" id="dialog" modal="true" width="600" header="Consumo del Modelo ML con Azure">
+                    <p:panelGrid>
+                        <p:row>
+                            <p:column colspan="3">
+                                <h3>Resultados de predicción</h3>
+                            </p:column>                        
+                        </p:row>                    
+
+                        <p:row>
+                            <p:column colspan="2">
+                                <p:outputLabel value="#{cancerC.cancer.resultado}"/>
+                            </p:column>
+                            <p:column rowspan="2">
+                                <img src="https://todobi.com/content/images/2020/06/Nub8-Machine-Learning-With-Azure-2.jpg" 
+                                     border="0" width="200" height="200"/>
+                            </p:column>
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Probabilidad"/>    
+                            </p:column>
+                            <p:column>
+                                <p:outputLabel value="#{cancerC.cancer.scoredProbabilities}"/>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:dialog>
+            </div>
+        </center>
+    </h:body>
+</html>
+
+
