@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:growl id="msj" showDetail="true" >
+            <p:autoUpdate/>
+        </p:growl>
+        <h:form>
+            <h1><b><center  style = "font-family:courier,arial,helvética;"><h:outputLabel value="BOLETA DETALLE :V"/></center></b></h1> 
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Medicamento"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('wdlgMedicamento').show();"/>
+                <p:outputLabel value="Cliente"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('wdlgCliente').show();"/>
+                <p:outputLabel value="Vendedor"/>
+                <p:commandButton value="Nuevo" oncomplete="PF('wdlgVendedor').show();"/>
+            </p:panelGrid>
+        </h:form>
+
+        <p:dialog widgetVar="wdlgMedicamento" id="wdlgMedicamento" modal="true">
+            <h:form>
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="PRESMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.PRESMED}">
+                    </p:inputText>
+
+                    <p:outputLabel value="GENMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.GENMED}">
+                    </p:inputText>
+
+                    <p:outputLabel value="COMMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.COMMED}">
+                    </p:inputText>
+
+                    <p:outputLabel value="PRECMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.PRECMED}">
+                    </p:inputText>
+
+                    <p:outputLabel value="FVMED "/>
+                    <p:calendar  placeholder="dia-mes-año" mask="true" id="fech" 
+                                 value="#{medicamentoC.med.FVMED}" locale="es" 
+                                 navigator="true" yearRange="c-100:c"  pattern="dd-MM-yyyy" 
+                                 required="true" requiredMessage="Falta fecha de nacimiento +18" 
+                                 maxdate="today" showButtonPanel="true">
+                    </p:calendar>
+                    <p:outputLabel value="STOCMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.STOCMED}">
+                    </p:inputText>
+                    <p:outputLabel value="FORMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.FORMED}">
+                    </p:inputText>
+                    <p:outputLabel value="LOTMED "/>
+                    <p:inputText placeholder="Escribe aqui" value="#{medicamentoC.med.LOTMED}">
+                    </p:inputText>
+
+                    <p:commandButton value="Agregar" actionListener="#{medicamentoC.registrar()}"
+                                     title="Agregar" update="frmVentDet:medi"
+                                     oncomplete="if(!args.validationFailed)PF('wdlgMedicamento').hide();">
+                    </p:commandButton>
+                    <p:commandButton title="cancelar" value="Cancelar" immediate="true" oncomplete="PF('wdlgDatos').hide();" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                        <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+                    </p:confirmDialog>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+        <h:form id="frmVentDet">
+            <p:panelGrid columns="2" style="margin: 0 auto; ">
+
+                <p:outputLabel value="Vendedor" for="vend"/>
+                <p:selectOneMenu id="vend" value="#{boletaC.boleta.vendedor.IDVEN}" style="width:360px" 
+                                 filter="true" filterMatchMode="contains" required="true" requiredMessage="Requiere Medicamento" >
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                    <f:selectItems value="#{vendedorC.listadoVen}" var="vende"
+                                   itemValue="#{vende.IDVEN}" 
+                                   itemLabel="#{vende.NOMVEN} #{vende.APEVEN}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Cliente" for="clie"/>
+                <p:selectOneMenu id="clie" value="#{boletaC.boleta.cliente.IDCLI}" style="width:360px" 
+                                 filter="true" filterMatchMode="contains" required="true" requiredMessage="Requiere Medicamento" >
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                    <f:selectItems value="#{clienteC.listadoCli}" var="cli"
+                                   itemValue="#{cli.IDCLI}" 
+                                   itemLabel="#{cli.NOMCLI} #{cli.APECLI}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel value="Medicamento" for="medi"/>
+                <p:selectOneMenu id="medi" value="#{boletaC.boletaDetalle.medicamento.IDMED}" style="width:360px" 
+                                 filter="true" filterMatchMode="contains" required="true" requiredMessage="Requiere Medicamento" >
+                    <f:selectItem noSelectionOption="true" itemLabel="Seleccione" itemValue="#{null}"/>
+                    <f:selectItems value="#{medicamentoC.listadomed}" var="medic"
+                                   itemValue="#{medic.IDMED}" 
+                                   itemLabel="#{medic.COMMED}"/>
+                </p:selectOneMenu>
+
+                <p:outputLabel  value="Cantidad *"/>
+                <p:inputText placeholder="Escribe aquí" id="cantidad" value="#{boletaC.boletaDetalle.CANTBODE}" 
+                             required="true" requiredMessage="Falta Cantidad" maxlength="30" style="width: 360px">
+                    <p:keyFilter regEx="/[1-9]/" />
+                </p:inputText>
+
+            </p:panelGrid>
+            <p:commandButton value="Agregar" actionListener="#{boletaC.agregarFila()}" 
+                             update="frmVentDet,:frmVentaDetalle"  icon="ui-icon-plus" />
+        </h:form>
+
+        <h:form id="frmVentaDetalle">
+            <p:dataTable var="vendet" id="tablaVentaDetalle" value="#{boletaC.listaBoletaDetalle}"
+                         rows="5" paginator="true" 
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15,20">
+
+                <p:column headerText="COMERCIAL">
+                    <h:outputText value="#{vendet.medicamento.COMMED}"/>
+                </p:column>
+
+                <p:column headerText="CANTIDAD">
+                    <h:outputText value="#{vendet.CANTBODE}"/>
+                </p:column>
+
+                <p:column headerText="sub total">
+                    <h:outputText value="#{vendet.SUBTOT}">
+                        <f:convertNumber type="currency" currencySymbol="S/. " minFractionDigits="2"/>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="ELIMINAR" style="width: 80px" exportable="false">
+                    <p:commandButton icon="ui-icon-
+                                     trash" actionListener="${boletaC.eliminarFila(vendet)}"
+                                     update="frmVentaDetalle">
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <p:separator/>
+            <h:panelGrid id="total" columns="2" style="font-size: 24px; margin: 0 auto">
+                TOTAL 
+                <h:outputText
+                    value="#{boletaC.boleta.IMPBOLE}">
+                    <f:convertNumber type="currency" currencySymbol="S/. " minFractionDigits="2"/>
+                </h:outputText>
+            </h:panelGrid>
+            <p:separator/>
+
+        </h:form>
+
+        <h:form id="frmenvio">
+            <p:panelGrid columns="5">
+                <p:commandButton actionListener="#{boletaC.registrarVenta()}" value="Registrar" icon="ui-icon-check"
+                                 style="width: 200px; height: 100px" update="frmVentDet :frmenvio :frmVentaDetalle"/>
+            </p:panelGrid>
+
+            <p:fieldset legend="Ventas" toggleable="true">
+                <p:dataTable var="vendetfin" id="tablaVentaDetalleFinal" value="#{boletaC.listaBoletaDetalleFinal}"
+                             rows="5" paginator="true" 
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                             rowsPerPageTemplate="5,10,15,20">
+                    <p:column headerText="CLIENTE">
+                        <h:outputText value="#{vendetfin.NOMCLI}"/>
+                    </p:column>
+                    <p:column headerText="PRODUCTO">
+                        <h:outputText value="#{vendetfin.medicamento.COMMED}"/>
+                    </p:column>
+                    <p:column headerText="CANTIDAD">
+                        <h:outputText value="#{vendetfin.CANTBODE}"/>
+                    </p:column>
+                    <p:column headerText="PRECIO">
+                        <h:outputText value="#{vendetfin.SUBTOT}">
+                            <f:convertNumber type="currency" currencySymbol="S/. " minFractionDigits="2"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column headerText="FECHA">
+                        <h:outputText value="#{vendetfin.boleta.FECHEMBOLE}"/>
+                    </p:column>
+                </p:dataTable>
+            </p:fieldset>
+        </h:form>
+
+        <script src="js/calendar.js" type="text/javascript"></script>
+        <link href="css/toggleswitch.css" rel="stylesheet" type="text/css"/>
+    </h:body>
+
+</html>
+
