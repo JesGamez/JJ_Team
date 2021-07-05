@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div class="card" style="padding: 20px;">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <form #imageForm="ngForm" autocomplete="off" (ngSubmit)="analyzeImage(imageForm)">
+
+                    <div class="form-group">
+                        <label for="imageURL" class="form-control">Imagen URL</label>
+                        <br/>
+
+                        <input type="text" name="imageURL" id="imageURL" imageURL="ngModel" (ngModel)="imageURL" class="form-control" placeholder="Pegar URL aquí....">
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <input type="submit" value="Analizar Imagen" class="btn btn-primary w-100">
+                    </div>
+
+                    <div className="card card-body">
+                        <h4>Prediccion</h4>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tag </th>
+                                    <th scope="col">Probabilidad</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <h1>{{title}}</h1>
+                                <h1>{{descripcion}}</h1> -->
+                                <tr scope="col">
+                                    <td>{{title}}</td>
+                                    <td>{{descripcion}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="col-lg-6">
+                <img [src]="imageURLPreview" alt="" width="200px" height="200px">
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
