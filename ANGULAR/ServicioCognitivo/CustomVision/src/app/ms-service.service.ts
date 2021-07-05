@@ -10,12 +10,12 @@ export class MsServiceService {
 
   public computerVisionService(imageURL: string){
     const API =
-    'https://imagenangular.cognitiveservices.azure.com/vision/v2.0/analyze?visualFeatures=Categories,Description,Tags,Color,Brands,Faces,ImageType';
+    'https://{tu endpoint}vision/v2.0/analyze?visualFeatures=Categories,Description,Tags,Color,Brands,Faces,ImageType';
     
   const headers =  new HttpHeaders(
       {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': '4e32f63994b944bc816776367dacfe09'
+        'Ocp-Apim-Subscription-Key': '{tu apikey}'
       }
     );
     return this.http.post(API, {url: imageURL}, {headers: headers})
