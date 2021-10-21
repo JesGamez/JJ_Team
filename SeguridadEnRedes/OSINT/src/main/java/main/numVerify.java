@@ -14,7 +14,7 @@ public class numVerify {
         Scanner scanner = new Scanner(System.in);
         int numero = scanner.nextInt();
         try{
-            URL url=new URL("http://apilayer.net/api/validate?access_key=f6b5b9a82ac13bfebfdd3cc5d82e217b&number="+numero+"&country_code=PE&format=1");
+            URL url=new URL("http://apilayer.net/api/validate?access_key=f6b5b9a82ac13bfebfd&number="+numero+"&country_code=PE&format=1");
             
             URLConnection con=url.openConnection();
             BufferedReader bf=new BufferedReader(new InputStreamReader(con.getInputStream()));
